@@ -1,0 +1,26 @@
+{
+    "name": "gateway-javascript",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "nodemon index.js",
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "@grpc/grpc-js": "^1.8.13",
+        "@hyperledger/fabric-gateway": "^1.2.2",
+        "body-parser": "^1.20.2",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "fabric-contract-api": "^2.0.0",
+        "fabric-shim": "^2.0.0",
+        "json-stringify-deterministic": "^1.0.1",
+        "npm": "^8.0.0",
+        "sort-keys-recursive": "^2.1.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22",
+        "eslint": "^6.6.0"
+    }
+}

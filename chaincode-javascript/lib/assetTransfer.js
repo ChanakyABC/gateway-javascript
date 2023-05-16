@@ -116,7 +116,7 @@ class AssetTransfer extends Contract {
         return ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(updatedAsset))));
     }
 
-    // DeleteAsset deletes an given asset from the world state.
+    // DeleteAsset deletes a given asset from the world state.
     async DeleteAsset(ctx, id) {
         const exists = await this.AssetExists(ctx, id);
         if (!exists) {
@@ -129,6 +129,22 @@ class AssetTransfer extends Contract {
     async AssetExists(ctx, id) {
         const assetJSON = await ctx.stub.getState(id);
         return assetJSON && assetJSON.length > 0;
+    }
+    async GetListOfOwners(ctx, id) {
+        // return ctx.stub.getHistoryForKey(id);
+        let iterator = await ctx.stub.getHistoryForKey(id);
+        let result = [];
+        let res = await iterator.next();
+        while (!res.done) {
+          if (res.value) {
+            console.info(`found state update with value: ${res.value.value.toString('utf8')}`);
+            const obj = JSON.parse(res.value.value.toString('utf8'));
+            result.push(obj);
+          }
+          res = await iterator.next();
+        } 
+        await iterator.close();
+        return result;
     }
 
     // TransferAsset updates the owner field of asset with given id in the world state.

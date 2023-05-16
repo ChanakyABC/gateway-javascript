@@ -102,8 +102,6 @@ const peerHostAlias = {
   org2: "peer0.org2.example.com",
 };
 
-const utf8Decoder = new TextDecoder();
-
 const config = {
   channelName,
   chaincodeName,
@@ -114,7 +112,6 @@ const config = {
   tlsCertPath,
   peerEndpoint,
   peerHostAlias,
-  utf8Decoder,
 };
 
 module.exports = config;
